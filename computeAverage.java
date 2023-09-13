@@ -1,4 +1,4 @@
-package servlet;
+// package servlet;
 
 /** *****************************************************************
  @author Jorge L Martinez & Jeff Offutt
@@ -16,21 +16,21 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 //Import Servlet Libraries
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
+// import javax.servlet.*;
+// import javax.servlet.http.*;
+// import javax.servlet.annotation.WebServlet;
 
 //Import Regex Libraries
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 //***********************************************************************
-@WebServlet(name = "computeAverage", urlPatterns = {"/computeAverage"})
+// @WebServlet(name = "computeAverage", urlPatterns = {"/computeAverage"})
 
-public class computeAverage extends HttpServlet
+public class computeAverage
 {
 
-static String servletName = "computeAverage";
+// static String servletName = "computeAverage";
 
 /** ====================================================
 ====================================================
@@ -43,91 +43,91 @@ static String servletName = "computeAverage";
     * Prints an HTML page with a blank form.
     * Front end method
     ********************************************************* */
-public void doGet (HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-{
-   response.setContentType("text/html");
-   PrintWriter out = response.getWriter();
-   PrintHead(out);
-   PrintBody(out, "1 2.5 3 4.5 5", ""); // example inputs
-   PrintTail(out);
-}  // End doGet
+// public void doGet (HttpServletRequest request, HttpServletResponse response)
+//     throws ServletException, IOException
+// {
+//    response.setContentType("text/html");
+//    PrintWriter out = response.getWriter();
+//    PrintHead(out);
+//    PrintBody(out, "1 2.5 3 4.5 5", ""); // example inputs
+//    PrintTail(out);
+// }  // End doGet
 
 /** *****************************************************
     * Prints the <head> of the HTML page, separate from the <body>.
     * Front end method
     ********************************************************* */
-private void PrintHead (PrintWriter out)
-{
-   out.println("<html>");
-   out.println("<head>");
-   out.println(" <meta charset=\"UTF-8\">");
-   out.println(" <title>Compute average</title>");
-   out.println(" ");
-   out.println("</head>");
-}  // End PrintHead
+// private void PrintHead (PrintWriter out)
+// {
+//    out.println("<html>");
+//    out.println("<head>");
+//    out.println(" <meta charset=\"UTF-8\">");
+//    out.println(" <title>Compute average</title>");
+//    out.println(" ");
+//    out.println("</head>");
+// }  // End PrintHead
 
 /** *****************************************************
     * Prints the <body> of the initial HTML page before
     * the user request
     * Front end method
     ********************************************************* */
-private void PrintBody (PrintWriter out, String inputStrRaw, String resultStr)
-{
-   String cleanInput = Arrays.toString(sanitize(inputStrRaw).split(" "));
-   resultStr = "Sanitized input: " +cleanInput+ "\n" +resultStr;
+// private void PrintBody (PrintWriter out, String inputStrRaw, String resultStr)
+// {
+//    String cleanInput = Arrays.toString(sanitize(inputStrRaw).split(" "));
+//    resultStr = "Sanitized input: " +cleanInput+ "\n" +resultStr;
 
-   out.println("<body style='background-color:#fff5e6'>");
-   out.println("<h1 style='text-align:center'>Compute numeric statistics</h1>");
-   out.println("<p>");
-   out.println("  This is a micro web app for class use.<br/>");
-   out.println("  Enter numbers (with or without decimal fractions).<br/>");
-   out.println("  Separate by commas, spaces, or new lines.<br/>");
-   out.println("  Non-numbers are ignored.<br/>");
-   out.println("</p>");
-   out.println("<hr>     ");
-   out.println("<form id='form1' style='text-align:center' name='form1' method='post' action='" +servletName+ "'>");
+//    out.println("<body style='background-color:#fff5e6'>");
+//    out.println("<h1 style='text-align:center'>Compute numeric statistics</h1>");
+//    out.println("<p>");
+//    out.println("  This is a micro web app for class use.<br/>");
+//    out.println("  Enter numbers (with or without decimal fractions).<br/>");
+//    out.println("  Separate by commas, spaces, or new lines.<br/>");
+//    out.println("  Non-numbers are ignored.<br/>");
+//    out.println("</p>");
+//    out.println("<hr>     ");
+//    out.println("<form id='form1' style='text-align:center' name='form1' method='post' action='" +servletName+ "'>");
 
-   out.println("  <table align='center'>");
-   out.println("  <tr>");
-   out.println("    <td>");
-   out.println("      <label for='inputStrRaw' style='text-align:center;'>Enter numbers:&emsp;</label>");
-   out.println("    </td><td>");
-   out.println("      <textarea autofocus name='inputStrRaw' id='inputStrRaw' rows='5' cols='30' value='string' placeholder='Enter numbers here' >"+inputStrRaw+"</textarea><br/>");
-   out.println("  </td></tr>");
-   out.println("  <tr>");
-   out.println("    <td>");
-   out.println("    </td><td>");
-   out.println("      <input type='submit' name='Operation' value='Mean'/>");
-   out.println("      &emsp;"); // spacer
-   out.println("      <input type='submit' name='Operation' value='Median'/>");
-   out.println("      &emsp;");
-   out.println("      <input type='submit' name='Operation' value='Mode'/>");
-   out.println("      &emsp;");
-   out.println("      <input type='submit' name='Operation' value='Reset'/>");
-   out.println("  </td></tr>");
-   out.println("  </table>");
+//    out.println("  <table align='center'>");
+//    out.println("  <tr>");
+//    out.println("    <td>");
+//    out.println("      <label for='inputStrRaw' style='text-align:center;'>Enter numbers:&emsp;</label>");
+//    out.println("    </td><td>");
+//    out.println("      <textarea autofocus name='inputStrRaw' id='inputStrRaw' rows='5' cols='30' value='string' placeholder='Enter numbers here' >"+inputStrRaw+"</textarea><br/>");
+//    out.println("  </td></tr>");
+//    out.println("  <tr>");
+//    out.println("    <td>");
+//    out.println("    </td><td>");
+//    out.println("      <input type='submit' name='Operation' value='Mean'/>");
+//    out.println("      &emsp;"); // spacer
+//    out.println("      <input type='submit' name='Operation' value='Median'/>");
+//    out.println("      &emsp;");
+//    out.println("      <input type='submit' name='Operation' value='Mode'/>");
+//    out.println("      &emsp;");
+//    out.println("      <input type='submit' name='Operation' value='Reset'/>");
+//    out.println("  </td></tr>");
+//    out.println("  </table>");
 
-   out.println("  <br/>");
-   out.println("  <br/>");
-   out.println("  <br/>");
-   out.println("  <label for='stringOutput' style='text-align:center;font-weight:bold;font-size:110%'> Result</label><br/>");
-   out.println("  <textarea name='stringOutput' id='stringOutput' cols='90' rows='10' placeholder='---' disabled>" +resultStr+ "  </textarea><br/> ");
-   out.println("</form>");
-   out.println("<br/><br/>");
-   out.println("<p style='font-weight:75%;color:gray'>Jorge Martinez &amp; Jeff Offutt</p>");
-   out.println("</body>");
-} // End PrintBody
+//    out.println("  <br/>");
+//    out.println("  <br/>");
+//    out.println("  <br/>");
+//    out.println("  <label for='stringOutput' style='text-align:center;font-weight:bold;font-size:110%'> Result</label><br/>");
+//    out.println("  <textarea name='stringOutput' id='stringOutput' cols='90' rows='10' placeholder='---' disabled>" +resultStr+ "  </textarea><br/> ");
+//    out.println("</form>");
+//    out.println("<br/><br/>");
+//    out.println("<p style='font-weight:75%;color:gray'>Jorge Martinez &amp; Jeff Offutt</p>");
+//    out.println("</body>");
+// } // End PrintBody
 
 /** *****************************************************
     * Prints the bottom of the HTML page.
     * Front end method
     ********************************************************* */
-private void PrintTail (PrintWriter out)
-{
-   out.println("");
-   out.println("</html>");
-} // End PrintTail
+// private void PrintTail (PrintWriter out)
+// {
+//    out.println("");
+//    out.println("</html>");
+// } // End PrintTail
 
 /** ====================================================
     ====================================================
@@ -151,8 +151,8 @@ private void PrintTail (PrintWriter out)
     * Front end method
     ********************************************************* */
 public void doPost (HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-{
+    throws ServletException, IOException {
+      // 
    response.setContentType("text/html");
    PrintWriter out = response.getWriter();
 
