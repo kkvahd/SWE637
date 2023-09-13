@@ -152,7 +152,7 @@ public class computeAverage
     ********************************************************* */
 public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-      // 
+      // Kind of the front end
    response.setContentType("text/html");
    PrintWriter out = response.getWriter();
 
